@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Career Path Suggestion</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+    }
+    .activities {
+      margin-top: 15px;
+    }
+    .activities label {
+      font-weight: normal;
+      display: block;
+      margin-top: 5px;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Career Path Suggestion</h2>
+    <label for="maths">Maths Marks (%)</label>
+    <input type="number" id="maths" min="0" max="100" />
+
+    <label for="science">Science Marks (%)</label>
+    <input type="number" id="science" min="0" max="100" />
+
+    <label for="english">English Marks (%)</label>
+    <input type="number" id="english" min="0" max="100" />
+
+    <div class="activities">
+      <label>Co-Curricular Activities:</label>
+      <label><input type="checkbox" id="sports" /> Sports</label>
+      <label><input type="checkbox" id="arts" /> Arts</label>
+      <label><input type="checkbox" id="coding" /> Coding Clubs</label>
+      <label><input type="checkbox" id="drama" /> Drama / Theater</label>
+    </div>
+
+    <button onclick="suggestCareer()">Suggest Career Path</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function suggestCareer() {
+      const maths = parseInt(document.getElementById('maths').value);
+      const science = parseInt(document.getElementById('science').value);
+      const english = parseInt(document.getElementById('english').value);
+
+      const sports = document.getElementById('sports').checked;
+      const arts = document.getElementById('arts').checked;
+      const coding = document.getElementById('coding').checked;
+      const drama = document.getElementById('drama').checked;
+
+      let result = "";
+
+      if (maths >= 85 && science >= 85 && coding) {
+        result = "Suggested Path: Software Engineering or Data Science";
+      } else if (arts && english >= 80) {
+        result = "Suggested Path: Fine Arts, Design, or Literature";
+      } else if (sports && maths >= 60) {
+        result = "Suggested Path: Sports Management or Physical Education";
+      } else if (drama && english >= 70) {
+        result = "Suggested Path: Performing Arts or Media";
+      } else if (science >= 80) {
+        result = "Suggested Path: Medical or Biological Sciences";
+      } else {
+        result = "Suggested Path: General Studies or Explore Further Interests";
+      }
+
+      document.getElementById('result').textContent = result;
+    }
+  </script>
+</body>
+</html>
